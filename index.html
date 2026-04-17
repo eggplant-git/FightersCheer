@@ -306,6 +306,189 @@
     border-radius: 50px;
   }
 
+  /* Starter toggle */
+  .starter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(245,197,24,0.08);
+    border-bottom: 1px solid rgba(245,197,24,0.2);
+  }
+
+  .toggle-switch {
+    position: relative;
+    width: 46px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: 26px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    left: 3px; top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+
+  .toggle-switch input:checked + .toggle-slider { background: var(--gold); }
+  .toggle-switch input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+  .toggle-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    flex: 1;
+  }
+
+  .toggle-label small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  /* Starter panel */
+  #starterPanel {
+    display: none;
+    margin: 10px 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(245,197,24,0.3);
+  }
+
+  #starterPanel.visible { display: block; }
+
+  .starter-header {
+    background: linear-gradient(135deg, #1a2a0a, #2a3d1a);
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .starter-loading {
+    padding: 24px;
+    text-align: center;
+    background: var(--gray);
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  .starter-loading .spinner {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 8px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .starter-error {
+    padding: 20px;
+    background: var(--gray);
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .starter-error .err-emoji { font-size: 32px; margin-bottom: 8px; }
+
+  /* Starter lineup */
+  .lineup-list {
+    background: var(--gray);
+  }
+
+  .lineup-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: background 0.15s;
+    gap: 10px;
+  }
+
+  .lineup-item:last-child { border-bottom: none; }
+  .lineup-item:hover { background: rgba(255,255,255,0.04); }
+  .lineup-item.open { background: rgba(245,197,24,0.05); }
+
+  .lineup-order {
+    background: var(--red);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .lineup-pos {
+    font-size: 10px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.08);
+    padding: 1px 5px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .lineup-name {
+    font-size: 14px;
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .lineup-chevron {
+    color: var(--text-muted);
+    font-size: 12px;
+    transition: transform 0.2s;
+  }
+
+  .lineup-item.open .lineup-chevron { transform: rotate(180deg); }
+
+  .lineup-lyrics {
+    display: none;
+    background: rgba(0,0,0,0.2);
+    padding: 12px 14px 14px 50px;
+    font-size: 13px;
+    line-height: 1.8;
+    white-space: pre-line;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .lineup-item.open + .lineup-lyrics { display: block; }
+
+  .lineup-tag {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .lineup-tag.personal { background: rgba(200,16,46,0.3); color: #ff6b6b; }
+  .lineup-tag.common { background: rgba(30,80,200,0.3); color: #7bb3ff; }
+
   /* Scroll to top */
   .scroll-top {
     position: fixed;
@@ -360,6 +543,29 @@
   <button class="tab-btn" data-filter="chance">チャンス</button>
   <button class="tab-btn" data-filter="team">球団歌</button>
   <button class="tab-btn" data-filter="other">その他</button>
+</div>
+
+<!-- スタメン表示トグル -->
+<div class="starter-toggle">
+  <label class="toggle-switch">
+    <input type="checkbox" id="starterToggle">
+    <span class="toggle-slider"></span>
+  </label>
+  <div class="toggle-label">
+    今日のスタメン順で表示
+    <small>ONにするとAIがスタメン情報を取得します</small>
+  </div>
+</div>
+
+<!-- スタメンパネル -->
+<div id="starterPanel">
+  <div class="starter-header">⚾ 本日のスタメン打順</div>
+  <div id="starterContent">
+    <div class="starter-loading">
+      <div class="spinner"></div>
+      <div>スタメン情報を取得中…</div>
+    </div>
+  </div>
 </div>
 
 <div class="search-stats" id="searchStats"></div>
@@ -1162,6 +1368,153 @@ Let's Go（打者）
 
   let currentFilter = 'all';
   let currentQuery = '';
+
+  // ===== 選手別応援歌データ（名前→歌詞のマップ） =====
+  const playerSongs = {};
+  document.querySelectorAll('.song-card[data-category="player"]').forEach(card => {
+    const names = (card.dataset.name || '').split(' ');
+    const lyricsEl = card.querySelector('.lyrics-text');
+    const lyrics = lyricsEl ? lyricsEl.textContent.trim() : '';
+    const displayName = card.querySelector('.song-name').textContent.trim();
+    names.forEach(n => {
+      if (n) playerSongs[n] = { lyrics, displayName, card };
+    });
+  });
+
+  // 共通テーマ（奇数/偶数/投手）歌詞
+  const commonThemes = {
+    odd:    '行けそれ行け 打てそれ打て\n走れここで輝け Let\'s Go FIGHTERS\nかっとばせー（選手名）',
+    even:   '未来へと続く 輝く星となれ\n栄光の瞬間 目指し突き進め\nかっとばせー（選手名）',
+    pitcher:'我らの期待を 右(左)腕に懸けて\n今魅せろ（選手名）全力で行け\nLet\'s Go Let\'s Go（選手名）',
+  };
+
+  // 名前でマッチング（フルネーム・姓・名・よみがな etc.）
+  function findPlayerSong(name) {
+    if (!name) return null;
+    // 直接マッチ
+    for (const key of Object.keys(playerSongs)) {
+      if (name.includes(key) || key.includes(name)) return playerSongs[key];
+    }
+    return null;
+  }
+
+  // 背番号から奇数/偶数テーマ判定
+  function getCommonTheme(number, position) {
+    if (position && (position.includes('投') || position === 'P')) return commonThemes.pitcher;
+    if (number % 2 === 0) return commonThemes.even;
+    return commonThemes.odd;
+  }
+
+  // スタメンパネルを描画
+  function renderLineup(lineup) {
+    const content = document.getElementById('starterContent');
+    if (!lineup || lineup.length === 0) {
+      content.innerHTML = `<div class="starter-error"><div class="err-emoji">📋</div><div>本日のスタメンはまだ発表されていません</div></div>`;
+      return;
+    }
+
+    let html = '<div class="lineup-list">';
+    lineup.forEach((player, i) => {
+      const song = findPlayerSong(player.name);
+      const lyrics = song ? song.lyrics : getCommonTheme(player.number || 0, player.position);
+      const isPersonal = !!song;
+      const displayName = song ? song.displayName : player.name;
+      const tag = isPersonal
+        ? '<span class="lineup-tag personal">個人歌</span>'
+        : '<span class="lineup-tag common">共通テーマ</span>';
+
+      html += `
+        <div class="lineup-item" onclick="toggleLineupItem(this)">
+          <span class="lineup-order">${i + 1}</span>
+          <span class="lineup-pos">${player.position || ''}</span>
+          <span class="lineup-name">${player.name}</span>
+          ${tag}
+          <span class="lineup-chevron">▾</span>
+        </div>
+        <div class="lineup-lyrics">${lyrics.replace(/（選手名）/g, `（${player.name}）`)}</div>
+      `;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+
+  function toggleLineupItem(el) {
+    el.classList.toggle('open');
+  }
+
+  // Claude APIでスタメン取得
+  async function fetchStarters() {
+    document.getElementById('starterContent').innerHTML = `
+      <div class="starter-loading">
+        <div class="spinner"></div>
+        <div>スタメン情報を取得中…</div>
+      </div>`;
+
+    const today = new Date().toLocaleDateString('ja-JP', { year:'numeric', month:'long', day:'numeric', timeZone:'Asia/Tokyo' });
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+          system: `あなたは北海道日本ハムファイターズのスタメン情報を調べるアシスタントです。
+今日の日本ハムの試合スタメン（打順）を調べ、以下のJSON形式のみで返答してください。
+発表されていない場合は {"announced": false} を返してください。
+発表されている場合は:
+{"announced": true, "opponent": "相手チーム名", "lineup": [{"order":1,"name":"選手名","position":"ポジション","number":背番号}, ...]}
+JSONのみを返し、前後に説明文や\`\`\`は一切つけないでください。`,
+          messages: [{ role: 'user', content: `${today}の北海道日本ハムファイターズの試合スタメン打順を調べてJSONで返してください。` }]
+        })
+      });
+
+      const data = await res.json();
+      // テキストブロックを抽出
+      const textBlock = data.content && data.content.find(b => b.type === 'text');
+      const text = textBlock ? textBlock.text.trim() : '';
+
+      let parsed;
+      try {
+        // JSON部分だけ取り出す
+        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        parsed = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+      } catch(e) {
+        throw new Error('JSONパース失敗: ' + text.slice(0, 100));
+      }
+
+      if (!parsed.announced) {
+        document.getElementById('starterContent').innerHTML = `
+          <div class="starter-error">
+            <div class="err-emoji">📋</div>
+            <div>本日のスタメンはまだ発表されていません</div>
+          </div>`;
+      } else {
+        // ヘッダーに対戦相手を追加
+        document.querySelector('#starterPanel .starter-header').textContent = `⚾ 本日のスタメン vs ${parsed.opponent || ''}`;
+        renderLineup(parsed.lineup || []);
+      }
+    } catch(e) {
+      console.error(e);
+      document.getElementById('starterContent').innerHTML = `
+        <div class="starter-error">
+          <div class="err-emoji">⚠️</div>
+          <div>取得に失敗しました<br><small style="color:#666">${e.message}</small></div>
+        </div>`;
+    }
+  }
+
+  // トグルイベント
+  document.getElementById('starterToggle').addEventListener('change', function() {
+    const panel = document.getElementById('starterPanel');
+    if (this.checked) {
+      panel.classList.add('visible');
+      fetchStarters();
+    } else {
+      panel.classList.remove('visible');
+    }
+  });
 
   // Tab filter
   document.querySelectorAll('.tab-btn').forEach(btn => {
