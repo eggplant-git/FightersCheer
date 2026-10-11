@@ -13,7 +13,6 @@
     --gold: #f5c518;
     --white: #f8f8f8;
     --gray: #1e2d42;
-    --light-gray: #2a3d55;
     --text-muted: #8ba3c0;
     --accent: #4fc3f7;
   }
@@ -27,7 +26,6 @@
     min-height: 100vh;
   }
 
-  /* Header */
   header {
     background: linear-gradient(135deg, var(--navy) 0%, #0d1f3c 50%, var(--red) 150%);
     border-bottom: 3px solid var(--red);
@@ -70,10 +68,7 @@
     display: block;
   }
 
-  /* Search */
-  .search-box {
-    position: relative;
-  }
+  .search-box { position: relative; }
 
   .search-box input {
     width: 100%;
@@ -104,7 +99,6 @@
     pointer-events: none;
   }
 
-  /* Tabs */
   .tabs {
     display: flex;
     gap: 8px;
@@ -114,7 +108,6 @@
     background: rgba(0,0,0,0.3);
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
-
   .tabs::-webkit-scrollbar { display: none; }
 
   .tab-btn {
@@ -138,27 +131,21 @@
     font-weight: 700;
   }
 
-  /* Search stats */
   .search-stats {
     padding: 8px 16px;
     font-size: 12px;
     color: var(--text-muted);
     display: none;
   }
-
   .search-stats.visible { display: block; }
 
-  /* Content */
   .content {
     padding: 12px 16px 80px;
     max-width: 700px;
     margin: 0 auto;
   }
 
-  /* Section */
-  .section {
-    margin-bottom: 8px;
-  }
+  .section { margin-bottom: 8px; }
 
   .section-header {
     display: flex;
@@ -178,17 +165,13 @@
     flex-shrink: 0;
   }
 
-  .tag-player { background: var(--red); color: white; }
-  .tag-theme { background: #1565c0; color: white; }
-  .tag-chance { background: #6a1b9a; color: white; }
-  .tag-team { background: #1b5e20; color: white; }
-  .tag-other { background: #37474f; color: white; }
+  .tag-player  { background: var(--red); color: white; }
+  .tag-theme   { background: #1565c0; color: white; }
+  .tag-chance  { background: #6a1b9a; color: white; }
+  .tag-team    { background: #1b5e20; color: white; }
+  .tag-other   { background: #37474f; color: white; }
 
-  .section-title {
-    font-size: 16px;
-    font-weight: 900;
-    flex: 1;
-  }
+  .section-title { font-size: 16px; font-weight: 900; flex: 1; }
 
   .chevron {
     color: var(--text-muted);
@@ -198,8 +181,8 @@
   }
 
   .section.collapsed .chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
 
-  /* Song card */
   .song-card {
     background: var(--gray);
     border-radius: 12px;
@@ -211,7 +194,7 @@
 
   .song-card.highlighted {
     border-color: var(--gold);
-    box-shadow: 0 0 0 2px rgba(245, 197, 24, 0.2);
+    box-shadow: 0 0 0 2px rgba(245,197,24,0.2);
   }
 
   .song-header {
@@ -234,11 +217,7 @@
     flex-shrink: 0;
   }
 
-  .song-name {
-    font-size: 15px;
-    font-weight: 700;
-    flex: 1;
-  }
+  .song-name { font-size: 15px; font-weight: 700; flex: 1; }
 
   .song-toggle {
     color: var(--text-muted);
@@ -246,7 +225,6 @@
     flex-shrink: 0;
     transition: transform 0.2s;
   }
-
   .song-card.open .song-toggle { transform: rotate(180deg); }
 
   .song-lyrics {
@@ -254,7 +232,6 @@
     padding: 0 14px 14px;
     border-top: 1px solid rgba(255,255,255,0.06);
   }
-
   .song-card.open .song-lyrics { display: block; }
 
   .lyrics-text {
@@ -264,7 +241,6 @@
     white-space: pre-line;
     padding-top: 12px;
   }
-
   .lyrics-text mark {
     background: var(--gold);
     color: var(--navy);
@@ -283,21 +259,6 @@
     line-height: 1.6;
   }
 
-  /* Section body hidden when collapsed */
-  .section.collapsed .section-body { display: none; }
-
-  /* No results */
-  .no-results {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-muted);
-    display: none;
-  }
-
-  .no-results.visible { display: block; }
-  .no-results .emoji { font-size: 48px; margin-bottom: 12px; }
-
-  /* Count badge */
   .count-badge {
     background: rgba(255,255,255,0.1);
     color: var(--text-muted);
@@ -306,7 +267,15 @@
     border-radius: 50px;
   }
 
-  /* Scroll to top */
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    display: none;
+  }
+  .no-results.visible { display: block; }
+  .no-results .emoji { font-size: 48px; margin-bottom: 12px; }
+
   .scroll-top {
     position: fixed;
     bottom: 20px;
@@ -324,12 +293,9 @@
     align-items: center;
     justify-content: center;
     z-index: 50;
-    transition: opacity 0.3s;
   }
-
   .scroll-top.visible { display: flex; }
 
-  /* Responsive */
   @media (min-width: 500px) {
     header h1 { font-size: 18px; }
     .song-name { font-size: 16px; }
@@ -366,202 +332,252 @@
 
 <div class="content" id="mainContent">
 
-  <!-- ===== 選手別応援歌 ===== -->
-  <div class="section" data-category="player" id="sec-player">
-    <div class="section-header" onclick="toggleSection('sec-player')">
-      <span class="section-tag tag-player">選手別</span>
-      <span class="section-title">選手応援歌</span>
-      <span class="count-badge" id="cnt-player">23曲</span>
-      <span class="chevron">▾</span>
-    </div>
-    <div class="section-body">
+<!-- ===== 選手別応援歌 ===== -->
+<div class="section" data-category="player" id="sec-player">
+  <div class="section-header" onclick="toggleSection('sec-player')">
+    <span class="section-tag tag-player">選手別</span>
+    <span class="section-title">選手応援歌</span>
+    <span class="count-badge">25曲</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="section-body">
 
-      <div class="song-card" data-name="アリエル・マルティネス マルティネス" data-category="player" data-num="2">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#2</span>
-          <span class="song-name">アリエル・マルティネス</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">渾身の力で 敵を蹴散らせ
+    <div class="song-card" data-name="アリエル・マルティネス マルティネス" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#2</span>
+        <span class="song-name">アリエル・マルティネス</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">渾身の力で 敵を蹴散らせ
 豪快なアーチを スタンドへぶち込め
 GoGo Let's Go マルティネス</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="郡司裕也 郡司" data-category="player" data-num="3">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#3</span>
-          <span class="song-name">郡司裕也</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【奇数回】
+    <div class="song-card" data-name="郡司裕也 郡司" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#3</span>
+        <span class="song-name">郡司裕也</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【奇数回】
 虹を描くアーチ 気高きその構えで
 ララララララ郡司 打て打て それ行け
 
 【偶数回】
-〜郡司！ ～郡司！
+〜郡司！ 〜郡司！
 ララララララ郡司 打て打て それ行け</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="上川畑大悟 上川畑 大悟 かみかわばた" data-category="player" data-num="4">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#4</span>
-          <span class="song-name">上川畑大悟</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">晴れたる吉備の国から 心熱く踏み出し
+    <div class="song-card" data-name="上川畑大悟 上川畑 かみかわばた 大悟" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#4</span>
+        <span class="song-name">上川畑大悟</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">晴れたる吉備の国から 心熱く踏み出し
 ダイヤモンドのその先 さあ行こうぜ大悟！
 （最後のみ：さあ行こうぜ大悟！を繰り返す）</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="野村佑希 野村 のむら" data-category="player" data-num="5">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#5</span>
-          <span class="song-name">野村佑希</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">行け希望の花 咲かすその日まで
+    <div class="song-card" data-name="野村佑希 野村 のむら" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#5</span>
+        <span class="song-name">野村佑希</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">行け希望の花 咲かすその日まで
 飛ばせ栄光の座へと 導くホームラン
 かっとばせー のむら</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="ロドルフォ・カストロ カストロ ルディ" data-category="player" data-num="6">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#6</span>
-          <span class="song-name">ロドルフォ・カストロ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">溢れる力を出し その名を刻め
+    <div class="song-card" data-name="ロドルフォ・カストロ カストロ ルディ" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#6</span>
+        <span class="song-name">ロドルフォ・カストロ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">溢れる力を出し その名を刻め
 希望の道を拓け Go my way！ルディ
 Go！Go！Let's Go！カストロ！</div>
-          <div class="note">※ Go my way は演奏時シャウト</div>
-        </div>
+        <div class="note">※Go my way は演奏時シャウト</div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="西川遥輝 西川 にしかわ" data-category="player" data-num="7">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#7</span>
-          <span class="song-name">西川遥輝</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">今だ 西川 遥かに続いた道を
+    <div class="song-card" data-name="西川遥輝 西川 にしかわ" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#7</span>
+        <span class="song-name">西川遥輝</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">今だ 西川 遥かに続いた道を
 走れ 西川 輝くその日まで
 かっとばせー！にしかわ！</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="淺間大基 淺間 あさま" data-category="player" data-num="8">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#8</span>
-          <span class="song-name">淺間大基</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">シャープに決める バッティング
+    <div class="song-card" data-name="淺間大基 淺間 あさま" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#8</span>
+        <span class="song-name">淺間大基</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">シャープに決める バッティング
 風斬るスピードと 敵を仕留める強肩で 勝ちへと繋げ
 かっとばせー あさま</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="中島卓也 中島 なかしま" data-category="player" data-num="9">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#9</span>
-          <span class="song-name">中島卓也</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">踏み出した姿に 最高の期待込めて
+    <div class="song-card" data-name="中島卓也 中島 なかしま" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#9</span>
+        <span class="song-name">中島卓也</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">踏み出した姿に 最高の期待込めて
 今、頂(いただき)目指し進め 挑み勝て中島
 かっとばせー なかしま</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="清水優心 清水 しみず" data-category="player" data-num="10">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#10</span>
-          <span class="song-name">清水優心</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">燃え盛れ清水 いざ打ち勝て
+    <div class="song-card" data-name="清水優心 清水 しみず" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#10</span>
+        <span class="song-name">清水優心</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">燃え盛れ清水 いざ打ち勝て
 冴え渡るリード 未来へ導け
 かっとばせー しみず</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="矢澤宏太 矢澤 やざわ" data-category="player" data-num="12">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#12</span>
-          <span class="song-name">矢澤宏太</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">飛び切りの夢へ 魂に身をまかせ
+    <div class="song-card" data-name="矢澤宏太 矢澤 やざわ" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#12</span>
+        <span class="song-name">矢澤宏太</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">飛び切りの夢へ 魂に身をまかせ
 心射抜くそのプレイ 決めるぞ矢澤
 かっとばせー やざわ</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="清宮幸太郎 清宮 きよみや" data-category="player" data-num="21">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#21</span>
-          <span class="song-name">清宮幸太郎</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">オーオオオーオーオ
+    <div class="song-card" data-name="伊藤大海 伊藤 いとう ひろみ エース" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#17</span>
+        <span class="song-name">伊藤大海</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【前奏】
+エース エース エース
+エースをねらえ
+
+駆け抜けろ 緑の海原を
+GO！大海羽ばたけ 栄光の空へ
+Go Go ひろみ</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="山崎福也 山崎 やまさき さちや" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#18</span>
+        <span class="song-name">山崎福也</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">北の大地で挑み 夢見る歓喜の日へ
+投打で輝きを放て 凛々しい姿で
+Let's Go Let's Go さちや</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="清宮幸太郎 清宮 きよみや" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#21</span>
+        <span class="song-name">清宮幸太郎</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">オーオオオーオーオ
 オーオーオー 清宮打て
-(清宮！)
+（清宮！）
 
 描き出す 理想(おもい)は久遠(はるか)高く
 鍛えし腕(かいな)で 清宮打て
 かっとばせー きよみや</div>
-        </div>
       </div>
-      
-      <div class="song-card" data-name="水野達稀 水野 みずの" data-category="player" data-num="22">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#43</span>
-          <span class="song-name">水野達稀</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">彼方煌めく栄光を 讃えしその日まで
+    </div>
+
+    <div class="song-card" data-name="水野達稀 水野 みずの" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#43</span>
+        <span class="song-name">水野達稀</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">彼方煌めく栄光を 讃えしその日まで
 果てなき夢の旅路 遥かに突き進め
 かっとばせー みずの</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="五十幡亮汰 五十幡 いそばた" data-category="player" data-num="50">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#50</span>
-          <span class="song-name">五十幡亮汰</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">この瞬間（とき）を刻む 魅せろスプリンター
+    <div class="song-card" data-name="ライル・リン 林家正 りんちゃーじぇん リン" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#26</span>
+        <span class="song-name">ライル・リン（林家正）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">アンダーチェンレイダー！リンチャージェン！
+（安打！全壘打！林家正！）
+タイワンインション！リンチャージェン！
+（台湾英雄！林家正！）
+
+リンチャージェン！リンチャージェン！
+（林家正！林家正！）
+アンダーチェンレイダー！リンチャージェン！
+（安打！全壘打！林家正！）</div>
+        <div class="note">※2026年新加入。台湾語の応援歌</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="五十幡亮汰 五十幡 いそばた" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#50</span>
+        <span class="song-name">五十幡亮汰</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">この瞬間（とき）を刻む 魅せろスプリンター
 五十幡駆け抜けるぜ 煌めく時代へ
 かっとばせー いそばた</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="水谷瞬 水谷 みずたに ジェッシー" data-category="player" data-num="53">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#53</span>
-          <span class="song-name">水谷瞬</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【前奏】
+    <div class="song-card" data-name="水谷瞬 水谷 みずたに ジェッシー" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#53</span>
+        <span class="song-name">水谷瞬</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【前奏】
 オーオーオー
 オーオーオーオー「ジェッシー！」
 オーオーオー 飛ばせホームラン
@@ -571,206 +587,189 @@ Go！Go！Let's Go！カストロ！</div>
 「GO！GO！」ジェッシー 両手をあげて
 「GO！GO！」ジェッシー 飛ばせホームラン
 みずたに みずたに</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="山縣秀 山縣 やまがた" data-category="player" data-num="55">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#54</span>
-          <span class="song-name">山縣秀</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">フィールドで舞う 華麗な旋律
+    <div class="song-card" data-name="山縣秀 山縣 やまがた ガタシュウ" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#54</span>
+        <span class="song-name">山縣秀</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">フィールドで舞う 華麗な旋律
 響け未来へと 行けガタシュウ
 かっとばせー！やまがた！</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="細川凌平 細川 ほそかわ" data-category="player" data-num="56">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#56</span>
-          <span class="song-name">細川凌平</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">さあ行くぞ かっ飛ばせ フィールド駆けろ
+    <div class="song-card" data-name="細川凌平 細川 ほそかわ 凌平" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#56</span>
+        <span class="song-name">細川凌平</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">さあ行くぞ かっ飛ばせ フィールド駆けろ
 煌びやかな栄冠を 掴むぞ凌平
 かっとばせー ほそかわ</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="奈良間大己 奈良間 ならま" data-category="player" data-num="58">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#58</span>
-          <span class="song-name">奈良間大己</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">走塁・打撃・守備 全て兼ね備えた
+    <div class="song-card" data-name="奈良間大己 奈良間 ならま" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#58</span>
+        <span class="song-name">奈良間大己</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">走塁・打撃・守備 全て兼ね備えた
 頼れる仕事人 いざ進むぞ奈良間
 かっとばせー ならま</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="今川優馬 今川 いまがわ" data-category="player" data-num="61">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#61</span>
-          <span class="song-name">今川優馬</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">それ行け今川 ガッツプレー
+      <div class="song-card" data-name="吉田賢吾 吉田 よしだ けんご" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#60</span>
+        <span class="song-name">吉田賢吾</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">フルスイングで 吹き込む勝利の風
+放つ打球はスタンドへ 届くホームラン
+かっとばせー！よしだ！</div>
+        <div class="note">※2026年新規追加</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="今川優馬 今川 いまがわ" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#61</span>
+        <span class="song-name">今川優馬</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">それ行け今川 ガッツプレー
 怒涛の如く 打つぞホームラン
 かっとばせー いまがわ</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="田宮裕涼 田宮 たみや" data-category="player" data-num="63">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#64</span>
-          <span class="song-name">田宮裕涼</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">裕涼のこの一打 広角に打ち分けろ
+    <div class="song-card" data-name="田宮裕涼 田宮 たみや 裕涼" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#64</span>
+        <span class="song-name">田宮裕涼</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">裕涼のこの一打 広角に打ち分けろ
 想いをその胸に ゆ！ あ！ 打･て！
 かっとばせー たみや</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="万波中正 万波 まんなみ" data-category="player" data-num="66">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#66</span>
-          <span class="song-name">万波中正</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">万世（ばんせい）に続く 大きな波を起こせ
+    <div class="song-card" data-name="万波中正 万波 まんなみ 中正" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#66</span>
+        <span class="song-name">万波中正</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">万世（ばんせい）に続く 大きな波を起こせ
 澄み渡る空に高く 輝け中正
 かっとばせー まんなみ</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="フランミル・レイエス レイエス" data-category="player" data-num="99">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#99</span>
-          <span class="song-name">フランミル・レイエス</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">期待背負いさぁ立ち上がれ オーレイエス
+    <div class="song-card" data-name="フランミル・レイエス レイエス" data-category="player">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">#99</span>
+        <span class="song-name">フランミル・レイエス</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">期待背負いさぁ立ち上がれ オーレイエス
 内に秘めた大きな蕾 この地でいま花咲け
 Go Go Let's Go レイエス</div>
-          <div class="note">※ボッツ選手の応援歌を流用</div>
-        </div>
+        <div class="note">※ボッツ選手の応援歌を流用</div>
       </div>
-
-      <div class="song-card" data-name="伊藤大海 伊藤 いとう ひろみ" data-category="player" data-num="17">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#17</span>
-          <span class="song-name">伊藤大海</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【前奏】
-エース エース エース
-エースをねらえ
-
-駆け抜けろ 緑の海原を
-GO！大海羽ばたけ 栄光の空へ
-Go Go ひろみ</div>
-        </div>
-      </div>
-
-      <div class="song-card" data-name="山崎福也 山崎 やまさき さちや" data-category="player" data-num="18">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">#18</span>
-          <span class="song-name">山崎福也</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">北の大地で挑み 夢見る歓喜の日へ
-投打で輝きを放て 凛々しい姿で
-Let's Go Let's Go さちや</div>
-        </div>
-      </div>
-
     </div>
+
   </div>
+</div>
 
-  <!-- ===== 共用打撃テーマ ===== -->
-  <div class="section" data-category="theme" id="sec-theme">
-    <div class="section-header" onclick="toggleSection('sec-theme')">
-      <span class="section-tag tag-theme">共用テーマ</span>
-      <span class="section-title">共用ヒッティングマーチ</span>
-      <span class="count-badge" id="cnt-theme">5曲</span>
-      <span class="chevron">▾</span>
-    </div>
-    <div class="section-body">
+<!-- ===== 共用打撃テーマ ===== -->
+<div class="section" data-category="theme" id="sec-theme">
+  <div class="section-header" onclick="toggleSection('sec-theme')">
+    <span class="section-tag tag-theme">共用テーマ</span>
+    <span class="section-title">共用ヒッティングマーチ</span>
+    <span class="count-badge">6曲</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="section-body">
 
-      <div class="song-card" data-name="メインテーマ1 代打テーマ 勝利を誘う" data-category="theme">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">メインテーマ１（代打のテーマ）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">勝利を誘う 晴れ舞台
-みなぎる闘志を ぶつけろ（選手名）
-行けそれ行け 打てそれ打て
-走れここで輝け Let's Go FIGHTERS</div>
-          <div class="note">※応援歌の1回目はアカペラで歌います。アカペラ中はメガホンをたたかないようにしましょう。手拍子はOKです。</div>
-        </div>
+    <div class="song-card" data-name="メインテーマ1 代打 勝利を誘う" data-category="theme">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">メインテーマ１（代打のテーマ）</span>
+        <span class="song-toggle">▾</span>
       </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">勝利を誘う 晴れ舞台 ラララ
+みなぎる闘志を ぶつけろ（選手名）
+かっとばせー（選手名）</div>
+        <div class="note">※アカペラ1回目はメガホン不可・手拍子OK</div>
+      </div>
+    </div>
 
-      <div class="song-card" data-name="メインテーマ2 奇数背番号 行けそれ行け" data-category="theme">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">メインテーマ２（奇数背番号選手）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">行けそれ行け 打てそれ打て
+    <div class="song-card" data-name="メインテーマ2 奇数背番号 行けそれ行け" data-category="theme">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">メインテーマ２（奇数背番号選手）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">行けそれ行け 打てそれ打て
 走れここで輝け Let's Go FIGHTERS
 かっとばせー（選手名）</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="メインテーマ3 偶数背番号 未来へと続く" data-category="theme">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">メインテーマ３（偶数背番号選手）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">未来へと続く 輝く星となれ
+    <div class="song-card" data-name="メインテーマ3 偶数背番号 未来へと続く" data-category="theme">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">メインテーマ３（偶数背番号選手）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">未来へと続く 輝く星となれ
 栄光の瞬間 目指し突き進め
 かっとばせー（選手名）</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="投手テーマ 右腕 左腕 我らの期待を" data-category="theme">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">⚾</span>
-          <span class="song-name">投手テーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">我らの期待を 右(左)腕に懸けて
+    <div class="song-card" data-name="投手テーマ 右腕 左腕 我らの期待" data-category="theme">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">⚾</span>
+        <span class="song-name">投手テーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">我らの期待を 右(左)腕に懸けて
 今魅せろ（選手名）全力で行け
 Let's Go Let's Go（選手名）</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="Go To Champion チャンピオン 掴め頂点" data-category="theme">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🏆</span>
-          <span class="song-name">Go To Champion</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">掴め！頂点！
+    <div class="song-card" data-name="Go To Champion チャンピオン 掴め頂点 エスコン" data-category="theme">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🏆</span>
+        <span class="song-name">Go To Champion</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">掴め！頂点！
 共に行こう
 重ねた日々が実を結ぶ
 歓喜の地へ
@@ -778,91 +777,105 @@ Let's Go Let's Go（選手名）</div>
 エスコンに初めての
 チャンピオンフラッグを
 オイ！×4</div>
-        </div>
       </div>
-
     </div>
+
+    <div class="song-card" data-name="関西限定 進撃 DOMINATE 2026 オイ ワッショイ 爆ぜよ" data-category="theme">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">関西限定マルチテーマ（進撃!!-DOMINATE2026-）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">オーオオオ…
+（演奏）オイ！
+（演奏）ワッショイ×2
+爆ぜよ今ここで
+オイ！オイ！DOMIれ！</div>
+        <div class="note">※2026年新曲・関西球場限定</div>
+      </div>
+    </div>
+
   </div>
+</div>
 
-  <!-- ===== チャンステーマ ===== -->
-  <div class="section" data-category="chance" id="sec-chance">
-    <div class="section-header" onclick="toggleSection('sec-chance')">
-      <span class="section-tag tag-chance">チャンス</span>
-      <span class="section-title">チャンステーマ</span>
-      <span class="count-badge" id="cnt-chance">10曲</span>
-      <span class="chevron">▾</span>
-    </div>
-    <div class="section-body">
+<!-- ===== チャンステーマ ===== -->
+<div class="section" data-category="chance" id="sec-chance">
+  <div class="section-header" onclick="toggleSection('sec-chance')">
+    <span class="section-tag tag-chance">チャンス</span>
+    <span class="section-title">チャンステーマ</span>
+    <span class="count-badge">11曲</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="section-body">
 
-      <div class="song-card" data-name="ジンギスカン チャンステーマ ウッハッ" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">チャンステーマ（ジンギスカン）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【前奏】
+    <div class="song-card" data-name="ジンギスカン チャンステーマ ウッハッ 打て 男性 女性" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">チャンステーマ（ジンギスカン）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【前奏】
 ウッ ハッ ウッ ハッ（繰り返し）
 
 【本曲】
 オイ　オイ　（選手名）
-【男性】打て！打て！
-【女性】打て！打て！
+【男性】（選手名）！
+【女性】（選手名）！
 オイ　オイ　（選手名）
-【男性】打て！打て！
-【女性】打て！打て！
 【男性】（選手名）！
 【女性】（選手名）！
 お前が決めてくれー（選手名）！</div>
-          <div class="note">※メインチャンステーマ。エスコンフィールドで主に使用</div>
-        </div>
+        <div class="note">※メインチャンステーマ</div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="チキチキバンバン チャンステーマ かっとばせ 頑張れ僕らのファイターズ" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">チャンステーマ（チキチキバンバン）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【前奏】Let's Go ○○！
+    <div class="song-card" data-name="チキチキバンバン チャンステーマ かっとばせ 頑張れ僕らのファイターズ" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">チャンステーマ（チキチキバンバン）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【前奏】Let's Go（選手名）！
 
 かっとばせ（選手名）！
 かっとばせ（選手名）！
 ウ〜 Yeah！
 頑張れ僕らのファイターズ 走れ速く
 頑張れ僕らのファイターズ 決めろ早く
-【男声】打って 打って （選手名）！
-【女声】打って 打って （選手名）！
+【男声】打って 打って（選手名）！
+【女声】打って 打って（選手名）！
 【全員】今だチャンスだ（選手名）！</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="北の国から チャンステーマ ラーラー" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">チャンステーマ（北の国から）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">ラーラーラララ…（選手名）
+    <div class="song-card" data-name="北の国から チャンステーマ ラーラー ゆけゆけ" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">チャンステーマ（北の国から）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">ラーラーラララ…（選手名）
 ラーラーラララ…（選手名）
 ラーラーラララ… オー
 オイ　オイ　オイオイオイ
 ゆけ　ゆけ　（選手名）
 打て　打て　（選手名）
 ゆけゆけそれゆけ　かっとばせ（選手名）</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="酔いどれマーチ 関東 チャンステーマ 我らの想い" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">チャンステーマ（酔いどれマーチ）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【導入】
+    <div class="song-card" data-name="酔いどれマーチ チャンステーマ 我らの想い 燃え上がれ" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">チャンステーマ（酔いどれマーチ）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【導入】
 我らの想い乗せ 行け（選手名）
 
 【本編】
@@ -873,17 +886,17 @@ Let's Go Let's Go（選手名）</div>
 【男声】オイ オイ（選手名）
 【女声】オイ オイ（選手名）
 我らの想い乗せ 行け（選手名）</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="チャンス一撃 関西 けっぱれ 打ったれ 打て打て さあ行くぞ" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">チャンステーマ（チャンス一撃）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【前奏】
+    <div class="song-card" data-name="チャンス一撃 けっぱれ 打ったれ 打て打て さあ行くぞ 時は来た" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">チャンステーマ（チャンス一撃）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【前奏】
 さあ行くぞ 男上げろ今
 時は来た 燃え上がれ 決めてやれ（選手名）！
 
@@ -896,18 +909,18 @@ Let's Go Let's Go（選手名）</div>
 進め 勝利目指し
 夢見る先へ
 オイ！オイ！</div>
-          <div class="note">「けっぱれ」は地域により変動：北海道→けっぱれ / 関西→打ったれ / 関東・仙台→打て打て / 九州→打つバイ</div>
-        </div>
+        <div class="note">北海道→けっぱれ / 関西→打ったれ / 関東・仙台→打て打て / 九州→打つバイ</div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="東京ドーム限定 FI・GHT ファイターズ 東京" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🗼</span>
-          <span class="song-name">東京ドーム限定チャンステーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【前奏】
+    <div class="song-card" data-name="東京ドーム限定 FI GHT ファイターズ 僕らの仲間 エスコン" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🗼</span>
+        <span class="song-name">東京ドーム限定チャンステーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【前奏】
 FI・GHT！FI・GHT！ファイターズ
 それゆけそれファイターズ ×2
 僕らの仲間だ 頑張れファイターズ
@@ -917,47 +930,85 @@ FI・GHT！FI・GHT！ファイターズ
 オー（選手名）！
 僕らの仲間だ 頑張れファイターズ
 エスコン！フィールドで！輝け！（選手名）！</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="ワッショイ チャンステーマ 打て 走れ わっしょい" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">チャンステーマ（ワッショイ）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">打て（選手名）（わっしょい×2）
+    <div class="song-card" data-name="ワッショイ チャンステーマ 打て 走れ 気合" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">チャンステーマ（ワッショイ）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">打て（選手名）（わっしょい×2）
 走れ（選手名）（わっしょい×2）
 敵の野手の間を抜く 気合の決勝打</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="仙台限定 チャンステーマ GOGO" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">仙台限定チャンステーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">GO GO GO GO
+    <div class="song-card" data-name="仙台限定 チャンステーマ GOGO いけいけ うってー" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">仙台限定チャンステーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">GO GO GO GO
 GOGO Let's GO Let's Go（選手名）
 いけいけそれいけ（選手名）
 【男】いっけーいけいけいけいけ（選手名）
 【女】いっけーいけいけいけいけ（選手名）
 【男】うってーうてうてうてうて（選手名）
 【女】うってーうてうてうてうて（選手名）</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="西日本限定 チャンステーマ 絶対勝つぞ" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🔥</span>
-          <span class="song-name">西日本限定チャンステーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【導入】絶対勝つぞ ファイターズ！×4
+    <div class="song-card" data-name="仙台限定 大きな歌 ホームラン 山の向こう" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">仙台限定チャンステーマ（大きな歌）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">大きなホームラン
+あの山の向こうまで
+地球をひと回り
+大きなホームラン</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="関東限定 チャンステーマ さあ今放て 勝利呼び込め 燃えろ" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">関東限定チャンステーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【前奏】
+（演奏）さあ 今放て〜
+
+【本編】
+（演奏）オイ！オイ！（選手名）！×2
+（選手名）！（選手名）！打て！打て！（選手名）！
+ラーラーラララララー
+【女性】勝利呼び込め〜　【男性】（選手名）！
+【男性】勝利呼び込め〜　【女性】（選手名）！
+（選手名）！（選手名）！打て！打て！（選手名）！
+さあ今放て〜
+（太鼓）（選手名）！（太鼓）（選手名）！
+燃えろ！燃えろ！（選手名）！</div>
+        <div class="note">※2026年新規追加</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="西日本限定 チャンステーマ 絶対勝つぞ かっとばせー 決めてやれ" data-category="chance">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🔥</span>
+        <span class="song-name">西日本限定チャンステーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【導入】絶対勝つぞ ファイターズ！×4
 
 【本編】
 オイ！（選手名）！
@@ -966,43 +1017,61 @@ GOGO Let's GO Let's Go（選手名）
 （ドンドンドドン）（選手名）！
 （ドンドンドドン）決めてやれ！
 絶対勝つぞファイターズ！</div>
-        </div>
       </div>
-
-      <div class="song-card" data-name="沖縄限定 チャンステーマ ハイ" data-category="chance">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🌺</span>
-          <span class="song-name">沖縄限定チャンステーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">ハイ！ハイ！ハイ！
-Go Go（選手名）！
-Go Go（選手名）！</div>
-        </div>
-      </div>
-
     </div>
+
   </div>
+</div>
 
-  <!-- ===== その他共用応援歌 ===== -->
-  <div class="section" data-category="other" id="sec-other">
-    <div class="section-header" onclick="toggleSection('sec-other')">
-      <span class="section-tag tag-other">その他</span>
-      <span class="section-title">その他の応援歌</span>
-      <span class="count-badge" id="cnt-other">5曲</span>
-      <span class="chevron">▾</span>
+<!-- ===== その他共用応援歌 ===== -->
+<div class="section" data-category="other" id="sec-other">
+  <div class="section-header" onclick="toggleSection('sec-other')">
+    <span class="section-tag tag-other">その他</span>
+    <span class="section-title">その他の応援歌</span>
+    <span class="count-badge">11曲</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="section-body">
+
+    <div class="song-card" data-name="チャンスメイクテーマ GoGo 一塁走者 二塁走者 打者" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">チャンスメイクテーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">（演奏）オイ！（演奏）
+Go Go（一塁走者）
+Go Go（二塁走者）
+Let's Go（打者）
+
+※二塁走者がいない場合は一塁走者名</div>
+      </div>
     </div>
-    <div class="section-body">
 
-      <div class="song-card" data-name="Go to チャンス 大好きなチームに 届け熱い想い" data-category="other">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">Go to チャンス</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【イントロ】
+    <div class="song-card" data-name="チャンスメイクテーマ 仙台限定 チャンスを広げろ お前の出番" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">チャンスメイクテーマ（仙台限定）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">チャンスを広げろ（二塁走者）
+お前の出番だ（打者）
+Go Go（一塁走者）
+Go Go（二塁走者）
+Let's Go（打者）</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="Go to チャンス 大好きなチームに 届け熱い想い Let's Go 進め ファイターズ" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">Go to チャンス</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【イントロ】
 （ドドドン）Let's Go！（ドドドン）Let's Go！
 （ドドドン）進め！ファイターズ！×2
 
@@ -1012,165 +1081,212 @@ Go Go（選手名）！</div>
 この歌で心ひとつ 共に進もう
 （ドドドン）Let's Go！（ドドドン）Let's Go！
 （ドドドン）進め！ファイターズ！</div>
-        </div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="初回攻撃開始 オイ 絶対勝つぞ そーれ" data-category="other">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">初回攻撃開始時テーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">そ～れ！
+    <div class="song-card" data-name="初回攻撃開始 そーれ オイ 絶対勝つぞ ファイターズ" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">初回攻撃開始時テーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">そ～れ！
 オイ！オイ！オ～ オイ！
 オイ！オイ！絶対勝つぞ！ファイターズ！
-そ～れ！オイ！オイ！オイ！</div>
-        </div>
+そ～れ！ファイターズ！</div>
       </div>
+    </div>
 
-      <div class="song-card" data-name="初回攻撃開始 仙台限定 打ちまくれ" data-category="other">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">初回攻撃開始時テーマ（仙台限定）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">これから始まるファイターズの攻撃
+    <div class="song-card" data-name="初回攻撃開始 仙台限定 打ちまくれ ラーラー ファイターズ" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">初回攻撃開始時テーマ（仙台限定）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">これから始まるファイターズの攻撃
 何点取っても構わない
 ラーラララ ララララ ラーラララ ラララ
 打って打って打って打って 打ちまくれ
 そ～れ！ファイターズ！</div>
-        </div>
       </div>
+    </div>
 
-      
-
-      <div class="song-card" data-name="チャンスメイク テーマ Go to" data-category="other">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">チャンスメイクテーマ（仙台限定）</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">チャンスを広げろ（二塁走者）
-お前の出番だ（打者）
-Go Go（一塁走者）
-Go Go（二塁走者）
-Let's Go（打者）
-
-※二塁走者がいない場合は一塁走者名</div>
-        </div>
+    <div class="song-card" data-name="出塁 進塁テーマ オイオイ そーれ" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">出塁・進塁テーマ</span>
+        <span class="song-toggle">▾</span>
       </div>
-
-      <div class="song-card" data-name="関東限定チャンステーマ" data-category="other">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">関東限定チャンステーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">【前奏】
-（曲）さあ 今放て～
-
-【本編】
-（曲）オイ！オイ！選手名！ × 2
-選手名！選手名！打て！打て！選手名！
-ラーラーラララララー
-（女性）勝利呼び込め～ （男性）選手名！
-（男性）勝利呼び込め～ （女性）選手名！
-選手名！選手名！打て！打て！選手名！
-さあ今放て～
-（太鼓）選手名！（太鼓）選手名！
-燃えろ！燃えろ！選手名！</div>
-        </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">（選手名）！（選手名）！
+オイ！オイ！（選手名）！
+（選手名）！（選手名）！
+オイ！オイ！（選手名）！
+そ～れ！（選手名）～</div>
       </div>
+    </div>
 
+    <div class="song-card" data-name="得点テーマ お～い北海道 ばんざい ホーム" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">得点のテーマ（ホーム）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">（選手名）！（選手名）！
+オイ！オイ！（選手名）
+（選手名）！（選手名）！
+オイ！オイ！（選手名）
+そ～れ！（選手名）！
 
-      <div class="song-card" data-name="ひとつになろう 勝利のために 今日の喜びを 選手もファンも" data-category="other">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎵</span>
-          <span class="song-name">ひとつになろう〜勝利のために〜</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">今日の喜びを みんなで分かち合おう
+お～い お～い 北海道 北海道
+お～い お～い 北海道 北海道
+ばんざーい×3</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="得点テーマ 逆転 勝ち越し ファイターズ讃歌 誰が鳴らすか ばんざい" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">得点のテーマ（逆転・勝ち越し時）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">（選手名）！（選手名）！
+オイ！オイ！（選手名）！
+（選手名）！（選手名）！
+オイ！オイ！（選手名）！
+そ～れ！（選手名）！
+
+誰が鳴らすかあの鐘は 勇気を讃えて空高く
+燃える心の茜雲 明日に向かって飛んでゆけ
+進めファイターズ勝利の男 進めファイターズさわやかに
+ばんざーい×3</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="得点テーマ ビジター ラララ ばんざい" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">得点のテーマ（ビジター）</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">（選手名）！（選手名）！
+オイ！オイ！（選手名）
+（選手名）！（選手名）！
+オイ！オイ！（選手名）
+ラララ…
+ばんざーい×3</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="ひとつになろう 勝利のために 選手もファンも チームなんだ" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">ひとつになろう〜勝利のために〜</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">今愛するチームへ チームへ届けたい
+手に汗握る熱いプレーへ 熱い声援を
+ラーララーラ ラーララーララー
+ラーララーララーララ ラー
+選手もファンも チームなんだ！
+ひとつのチームなんだ！×2</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="最終回テーマ 九回 勝利へ突き進め オーオー" data-category="other">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎵</span>
+        <span class="song-name">最終回のテーマ</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">オオオーオーオー
+オーオーオオオー
+勝利へさあ突き進め
+オオオーオーオー
+オーオーオオオー</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 球団歌 ===== -->
+<div class="section" data-category="team" id="sec-team">
+  <div class="section-header" onclick="toggleSection('sec-team')">
+    <span class="section-tag tag-team">球団歌</span>
+    <span class="section-title">球団歌・チームソング</span>
+    <span class="count-badge">3曲</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="section-body">
+
+    <div class="song-card" data-name="ファイターズ讃歌 誰が鳴らすか 進めファイターズ 球団歌 さわやかに" data-category="team">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎼</span>
+        <span class="song-name">ファイターズ讃歌</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">【一番】
+誰が鳴らすか あの鐘は 勇気を讃えて 空高く
+燃える心の 茜雲 明日に向かって 飛んで行け
+進めファイターズ 勝利の男 進めファイターズ さわやかに
+
+【二番】
+男同士の 友情は がっちりスクラム 組んだ腕
+こうと決めたら まっしぐら 嵐の大地を 突っ走れ
+進めファイターズ 勝利の男 進めファイターズ どこまでも
+
+【三番】
+若さみなぎる 情熱は かわした瞳に あふれてる
+昇る太陽 指さした 誓いのサインは ビクトリー
+進めファイターズ 勝利の男 進めファイターズ ひとすじに</div>
+        <div class="note">※逆転・勝ち越し得点時に使用</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="お～い北海道 おーい 得点 ホーム" data-category="team">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎼</span>
+        <span class="song-name">お～い北海道</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">お～い お～い 北海道 北海道
+お～い お～い 北海道 北海道
+ばんざーい×3</div>
+        <div class="note">※ホーム得点時（逆転・勝ち越し以外）に使用</div>
+      </div>
+    </div>
+
+    <div class="song-card" data-name="ひとつになろう 歓びをともに 勝利 試合後 選手もファンも" data-category="team">
+      <div class="song-header" onclick="toggleCard(this)">
+        <span class="song-num">🎼</span>
+        <span class="song-name">ひとつになろう〜歓びをともに〜</span>
+        <span class="song-toggle">▾</span>
+      </div>
+      <div class="song-lyrics">
+        <div class="lyrics-text">今日の喜びを みんなで分かち合おう
 熱いプレーと熱い声で 勝ち取った勝利を
 ラーララーラ ラーララーララー
 ラーララーララーララ ラー
 選手もファンも チームなんだ！
 ひとつのチームなんだ！×2</div>
-        </div>
+        <div class="note">※試合後勝利時に流れるチームソング</div>
       </div>
-
     </div>
+
   </div>
-
-  <!-- ===== 球団歌・応援歌 ===== -->
-  <div class="section" data-category="team" id="sec-team">
-    <div class="section-header" onclick="toggleSection('sec-team')">
-      <span class="section-tag tag-team">球団歌</span>
-      <span class="section-title">球団歌・チームソング</span>
-      <span class="count-badge" id="cnt-team">4曲</span>
-      <span class="chevron">▾</span>
-    </div>
-    <div class="section-body">
-
-      <div class="song-card" data-name="ファイターズ讃歌 誰が鳴らすか 進めファイターズ 球団歌" data-category="team">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎼</span>
-          <span class="song-name">ファイターズ讃歌</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">誰が鳴らすか あの鐘は
-勇気を讃えて 空高く
-燃える心の 茜雲
-明日に向かって 飛んでゆけ
-進めファイターズ 勝利の男
-進めファイターズ さわやかに</div>
-          <div class="note">※逆転・勝ち越し時に歌います（「お～い北海道」の代わりに）</div>
-        </div>
-      </div>
-
-      <div class="song-card" data-name="お～い北海道 おーい 最終回 勝利 サヨナラ" data-category="team">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎼</span>
-          <span class="song-name">お～い北海道</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">（演奏に乗せてファンが歌う。逆転時はファイターズ讃歌に切り替え）</div>
-          <div class="note">※同点・勝ち越し直後でない勝利時に使用</div>
-        </div>
-      </div>
-
-      <div class="song-card" data-name="ひとつになろう 歓びをともに 球団歌" data-category="team">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎼</span>
-          <span class="song-name">ひとつになろう〜歓びをともに〜</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">（試合後勝利時に流れるチームソング）</div>
-        </div>
-      </div>
-
-      <div class="song-card" data-name="最終回テーマ 九回 最後 勝利" data-category="team">
-        <div class="song-header" onclick="toggleCard(this)">
-          <span class="song-num">🎼</span>
-          <span class="song-name">最終回テーマ</span>
-          <span class="song-toggle">▾</span>
-        </div>
-        <div class="song-lyrics">
-          <div class="lyrics-text">（9回攻撃時に演奏される特別テーマ）</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
 </div>
+
+</div><!-- /mainContent -->
 
 <div class="no-results" id="noResults">
   <div class="emoji">⚾</div>
@@ -1189,7 +1305,6 @@ Let's Go（打者）
   let currentFilter = 'all';
   let currentQuery = '';
 
-  // Tab filter
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1199,8 +1314,7 @@ Let's Go（打者）
     });
   });
 
-  // Search
-  searchInput.addEventListener('input', (e) => {
+  searchInput.addEventListener('input', e => {
     currentQuery = e.target.value.trim();
     applyFilters();
   });
@@ -1211,7 +1325,7 @@ Let's Go（打者）
 
   function highlightText(text, query) {
     if (!query) return text;
-    const re = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    const re = new RegExp('(' + escapeRegex(query) + ')', 'gi');
     return text.replace(re, '<mark>$1</mark>');
   }
 
@@ -1221,9 +1335,8 @@ Let's Go（打者）
     const sections = document.querySelectorAll('.section');
     let totalVisible = 0;
 
-    // Reset lyrics highlights
     document.querySelectorAll('.lyrics-text').forEach(el => {
-      el.innerHTML = el.textContent; // strip marks first
+      el.innerHTML = el.textContent;
     });
 
     cards.forEach(card => {
@@ -1231,15 +1344,12 @@ Let's Go（打者）
       const name = (card.dataset.name || '').toLowerCase();
       const lyricsEl = card.querySelector('.lyrics-text');
       const lyricsText = lyricsEl ? lyricsEl.textContent.toLowerCase() : '';
-
       const matchFilter = currentFilter === 'all' || cat === currentFilter;
       const matchQuery = !q || name.includes(q) || lyricsText.includes(q);
 
       if (matchFilter && matchQuery) {
         card.style.display = '';
         totalVisible++;
-
-        // Highlight and open if lyrics match
         if (q && lyricsEl) {
           if (lyricsText.includes(q)) {
             lyricsEl.innerHTML = highlightText(lyricsEl.textContent, currentQuery);
@@ -1258,32 +1368,23 @@ Let's Go（打者）
       }
     });
 
-    // Show/hide sections
     sections.forEach(sec => {
       const cat = sec.dataset.category;
       const matchFilter = currentFilter === 'all' || cat === currentFilter;
-      if (!matchFilter) {
-        sec.style.display = 'none';
-        return;
-      }
+      if (!matchFilter) { sec.style.display = 'none'; return; }
       sec.style.display = '';
-      const visibleCards = [...sec.querySelectorAll('.song-card')].filter(c => c.style.display !== 'none');
-      sec.style.display = visibleCards.length > 0 ? '' : 'none';
-      // Expand sections when searching
-      if (q && visibleCards.length > 0) {
-        sec.classList.remove('collapsed');
-      }
+      const visible = [...sec.querySelectorAll('.song-card')].filter(c => c.style.display !== 'none');
+      sec.style.display = visible.length > 0 ? '' : 'none';
+      if (q && visible.length > 0) sec.classList.remove('collapsed');
     });
 
-    // Stats
     if (q) {
-      searchStats.textContent = `「${currentQuery}」の検索結果：${totalVisible}件`;
+      searchStats.textContent = '「' + currentQuery + '」の検索結果：' + totalVisible + '件';
       searchStats.classList.add('visible');
     } else {
       searchStats.classList.remove('visible');
     }
 
-    // No results
     if (totalVisible === 0 && q) {
       noResults.classList.add('visible');
       noResultsQuery.textContent = currentQuery;
@@ -1294,30 +1395,24 @@ Let's Go（打者）
     }
   }
 
-  // Toggle section
   function toggleSection(id) {
-    const sec = document.getElementById(id);
-    sec.classList.toggle('collapsed');
+    document.getElementById(id).classList.toggle('collapsed');
   }
 
-  // Toggle card
   function toggleCard(header) {
-    const card = header.closest('.song-card');
-    card.classList.toggle('open');
+    header.closest('.song-card').classList.toggle('open');
   }
 
-  // Scroll to top button
   window.addEventListener('scroll', () => {
     scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
   });
 
-  // Auto-open if URL has hash
   window.addEventListener('load', () => {
     if (location.hash) {
       const target = document.querySelector(location.hash);
       if (target) {
         target.classList.add('open');
-        setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'center'}), 300);
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
       }
     }
   });
